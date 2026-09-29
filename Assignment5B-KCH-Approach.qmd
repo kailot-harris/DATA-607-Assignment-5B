@@ -1,0 +1,20 @@
+---
+title: "DATA 607 - Assignment 5B - Approach"
+author: "Kailot C. Harris"
+date: "2026/09/28"
+format:
+  html:
+    code-overflow: wrap
+editor: visual
+theme:
+  dark: darkly
+  light: flatly
+---
+
+# Introduction and Overview
+
+This assignment is an extension of Project 1, in which Elo ratings were calculated for 13 WNBA teams competing in the 2025 WNBA regular season. Here, the output of Project 1 (a .CSV file containing season-end Elo ratings, average opponent Elo ratings, and total wins) acts as the input for this assignment, where expected win totals will be calculated for each team. Expected wins will be calculated using a methodology similar to Arpad Elo's original approach:
+
+# Adaptation
+
+In the original assignment, semi-structured data for a chess tournament was provided for analysis under the Elo methodology. In this modified assignment, data for the 2025 WNBA regular season is used to furnish expected win predictions for each WNBA team.
