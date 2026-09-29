@@ -1,5 +1,5 @@
 ---
-title: "DATA 607 - Assignment 5B - Approach"
+title: "DATA 607 - Assignment 5B - Codebase"
 author: "Kailot C. Harris"
 date: "2026/09/28"
 format:
@@ -37,7 +37,80 @@ In the original assignment, semi-structured data for a chess tournament was prov
 
 ## Data Import
 
-```{r}
+```{r packages}
+#| echo: false
+#| warning:  false
+#| message:  false
+
+library(tidyverse)
+
+```
+
+```{r data-import}
+#| echo:  true
+#| warning:  false
+#| message:  false
+
+season <- as.numeric(2025)
+
+url <- "https://raw.githubusercontent.com/kailot-harris/DATA-607-Project-1-WNBA-ELO-Ratings/refs/heads/main/wnba_elo_summary_2025.csv"
+
+csv_data <- readr::read_csv(file = url, 
+                            show_col_types = FALSE,
+                            progress = FALSE)
+
+```
+
+```{r data-tidying-transforming}
+#| echo:  true
+#| warning:  false
+#| message:  false
+
+clean_data <- janitor::clean_names(csv_data)
+
+games_2025 <- as.integer(44)
+
+df <- clean_data |>
+  mutate (rel_elo = final_elo-avg_opp_elo,
+          win_prob = 1/(1+(10^(-rel_elo/400))),
+          e_wins = round(games_2025 * win_prob,2),
+          diff_wins = round(total_wins - e_wins,1)
+          ) |>
+  arrange(desc(diff_wins))
+
+knitr::kable(df, caption = "Summary of Elo Results")
+```
+
+```{r overperform}
+#| echo:  true
+#| warning:  false
+#| message:  false
+
+over_perform <- head(df,5) |>
+  select(team, total_wins, expected_wins = e_wins, diff_wins)
+
+
+knitr::kable(over_perform, caption = "Top 5 Overperforming WNBA Teams (2025)")
+```
+
+```{r underperform}
+#| echo:  true
+#| warning:  false
+#| message:  false
+
+under_perform <-tail(df,5) |>
+  select(team, total_wins, expected_wins = e_wins, diff_wins) |>
+  arrange(diff_wins)
+
+knitr::kable(under_perform, caption = "Top 5 Underperforming WNBA Teams (2025)")
+```
+
+## Data Visualization
+
+```{r viz-1}
+#| echo:  true
+#| warning:  false
+#| message:  false
 
 
 
