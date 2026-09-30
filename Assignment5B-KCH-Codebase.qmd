@@ -19,13 +19,19 @@ $$
 \sigma(x) = \frac{1}{1+10^\frac{-x}{400}}
 $$
 
-From there, individual win probabilities are calculated according to: $P{(A>B)} = \sigma(R_A - R_B)$
+From there, individual win probabilities are calculated according to:
+
+$$P{(A>B)} = \sigma(R_A - R_B) $$
 
 The error, for a game in which team A is the winner, is calculated as the probability of B winning:
 
-$E_{(w=A)} = P(B>A) = \sigma(R_B-R_A)$. The new rankings for each team are calculated via an update function, where the $t+1$ index of the vector is the sum of the $t$ index and the update value:
+$$E_{(w=A)} = P(B>A) = \sigma(R_B-R_A)$$
 
-$R_A^{(t+1)} = R_A^{(t)} + K*E_{(w=A)}$ and $R_B^{(t+1)} = R_B^{(t)} - K*E_{(w=A)}$.
+The new rankings for each team are calculated via update functions, where the $t+1$ index of the vector is the sum of the $t$ index and the update value:
+
+$$R_A^{(t+1)} = R_A^{(t)} + K*E_{(w=A)}$$
+
+$$R_B^{(t+1)} = R_B^{(t)} - K*E_{(w=A)}$$
 
 Anticipated challenges include data transformations, where maintaining a tidy data frame will be most conducive to downstream analysis, and data visualization, where constructing meaningful representations of the data may be unwieldy. Additionally, manipulating summary data for the 2025 regular season, without the granular game-by-game data, may prove challenging.
 
@@ -107,11 +113,87 @@ knitr::kable(under_perform, caption = "Top 5 Underperforming WNBA Teams (2025)")
 
 ## Data Visualization
 
-```{r viz-1}
+```{r setting-plot-theme}
 #| echo:  true
 #| warning:  false
 #| message:  false
 
+theme_standard <- function(){
+  theme_minimal() +
+    theme(
+      plot.title.position = "plot",
+      plot.caption.position = "plot",
+      plot.title = element_text(size = 15, face = "bold"),
+      plot.subtitle = element_text(size = 13, face = "italic"),
+      axis.text.y = element_text(size = 11, face = "bold"),
+      axis.text.x = element_text(size = 11, face = "bold"),
+      axis.title.y = element_text(size = 12, face = "bold"),
+      axis.title.x = element_text(size = 12, face = "bold")
+    )
+}
+```
 
+```{r viz-1}
+#| echo:  true
+#| warning:  false
+#| message:  false
+#| label: fig-1
+#| fig-cap: "Expected Wins vs. End of Season Elo Rating (2025)"
+
+df |>
+  ggplot(aes(x=final_elo, y=e_wins)) +
+  geom_smooth(method = "lm", se = FALSE) +
+  geom_point(show.legend = FALSE) +
+  labs(title = "Expected Wins vs. End of Season Elo Rating",
+       subtitle = "2025 Regular Season (44 games)",
+       x = "Final Elo Rating",
+       y = "Expected Wins",
+         ) +
+  theme_standard() +
+  scale_y_continuous(limits = c(0,44))
 
 ```
+
+```{r}
+#| echo:  true
+#| warning:  false
+#| message:  false
+#| label: fig-1
+#| fig-cap: "Expected Wins vs. Total Wins (2025)"
+
+df |>
+  ggplot(aes(x=total_wins, y=e_wins)) +
+  geom_smooth(method = "lm", se = FALSE) +
+  geom_point(show.legend = FALSE) +
+  labs(title = "Expected Wins vs. Total Wins",
+       subtitle = "2025 Regular Season (44 games)",
+       x = "Total Wins",
+       y = "Expected Wins",
+  ) +
+  theme_standard() +
+  scale_y_continuous(limits = c(0,44)) +
+  scale_x_continuous(limits = c(0,44))
+```
+
+```{r viz-2}
+#| echo:  true
+#| warning:  false
+#| message:  false
+#| label: fig-2
+#| fig-cap: "Summary of Win Differentials"
+
+df |>
+  mutate(team = reorder(team, diff_wins)) |>
+  ggplot(aes(x=team, y=diff_wins, fill=diff_wins)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  labs(title = "Summary of Win Differentials",
+       subtitle = "2025 Regular Season (44 games)",
+       x = "",
+       y = "Win Differential (Actual - Expected)",
+  ) +
+  theme_standard() +
+  scale_y_continuous(limits = c(-6.5,6.5))
+```
+
+# Findings and Recommendations

@@ -11,34 +11,30 @@ theme:
   light: flatly
 ---
 
+# 
+
 # Introduction and Overview
 
 This assignment is an extension of Project 1, in which Elo ratings were calculated for 13 WNBA teams competing in the 2025 WNBA regular season. Here, the output of Project 1 (a .CSV file containing season-end Elo ratings, average opponent Elo ratings, and total wins) acts as the input for this assignment, where expected win totals will be calculated for each team. Expected wins will be calculated using a methodology similar to Arpad Elo's original approach, but modified for the [NBA regular season](https://nicidob.github.io/nba_elo/). Probabilities are calculated via a sigmoid function:
 
-$$
-\sigma(x) = \frac{1}{1+10^\frac{-x}{400}}
-$$
+$$ \sigma(x) = \frac{1}{1+10^\frac{-x}{400}} $$
 
-From there, individual win probabilities are calculated according to: $P{(A>B)} = \sigma(R_A - R_B)$
+From there, individual win probabilities are calculated according to:
+
+$$P{(A>B)} = \sigma(R_A - R_B) $$
 
 The error, for a game in which team A is the winner, is calculated as the probability of B winning:
 
-$E_{(w=A)} = P(B>A) = \sigma(R_B-R_A)$. The new rankings for each team are calculated via an update function, where the $t+1$ index of the vector is the sum of the $t$ index and the update value:
+$$E_{(w=A)} = P(B>A) = \sigma(R_B-R_A)$$
 
-$R_A^{(t+1)} = R_A^{(t)} + K*E_{(w=A)}$ and $R_B^{(t+1)} = R_B^{(t)} - K*E_{(w=A)}$.
+The new rankings for each team are calculated via update functions, where the $t+1$ index of the vector is the sum of the $t$ index and the update value:
+
+$$R_A^{(t+1)} = R_A^{(t)} + K*E_{(w=A)}$$
+
+$$R_B^{(t+1)} = R_B^{(t)} - K*E_{(w=A)}$$
 
 Anticipated challenges include data transformations, where maintaining a tidy data frame will be most conducive to downstream analysis, and data visualization, where constructing meaningful representations of the data may be unwieldy. Additionally, manipulating summary data for the 2025 regular season, without the granular game-by-game data, may prove challenging.
 
 # Adaptation
 
 In the original assignment, semi-structured data for a chess tournament was provided for analysis under the Elo methodology. Outputs from the first project consisted of a .CSV file with chess player information: name, state, total points, pre-rating, and average opponent pre-rating. Outputs for the first phase of this assignment involved a .CSV file with the following data: WNBA team, In this modified assignment, data for the 2025 WNBA regular season will be used to furnish expected win predictions for each WNBA team name, total wins in 2025, final Elo rating, and average opponent Elo rating.
-
-# Codebase
-
-## Data Import
-
-```{r}
-
-
-
-```

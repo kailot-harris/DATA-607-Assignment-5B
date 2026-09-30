@@ -9,7 +9,7 @@
 <meta name="author" content="Kailot C. Harris">
 <meta name="dcterms.date" content="2026-09-28">
 
-<title>DATA 607 - Assignment 5B - Approach</title>
+<title>DATA 607 - Assignment 5B - Codebase</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -28,22 +28,57 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="Assignment5B-KCH-Approach_files/libs/clipboard/clipboard.min.js"></script>
-<script src="Assignment5B-KCH-Approach_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="Assignment5B-KCH-Approach_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="Assignment5B-KCH-Approach_files/libs/quarto-html/popper.min.js"></script>
-<script src="Assignment5B-KCH-Approach_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="Assignment5B-KCH-Approach_files/libs/quarto-html/anchor.min.js"></script>
-<link href="Assignment5B-KCH-Approach_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="Assignment5B-KCH-Approach_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="Assignment5B-KCH-Approach_files/libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="Assignment5B-KCH-Approach_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="Assignment5B-KCH-Approach_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="Assignment5B-KCH-Approach_files/libs/bootstrap/bootstrap-b7e5477073de7410311bbbfdd309c8e4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="Assignment5B-KCH-Approach_files/libs/bootstrap/bootstrap-dark-5f24cf023e044cee6f6f78646bcc928e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="Assignment5B-KCH-Codebase_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Assignment5B-KCH-Codebase_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Assignment5B-KCH-Codebase_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Assignment5B-KCH-Codebase_files/libs/quarto-html/popper.min.js"></script>
+<script src="Assignment5B-KCH-Codebase_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Assignment5B-KCH-Codebase_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Assignment5B-KCH-Codebase_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Assignment5B-KCH-Codebase_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="Assignment5B-KCH-Codebase_files/libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="Assignment5B-KCH-Codebase_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Assignment5B-KCH-Codebase_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Assignment5B-KCH-Codebase_files/libs/bootstrap/bootstrap-b7e5477073de7410311bbbfdd309c8e4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="Assignment5B-KCH-Codebase_files/libs/bootstrap/bootstrap-dark-5f24cf023e044cee6f6f78646bcc928e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
@@ -246,7 +281,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">DATA 607 - Assignment 5B - Approach</h1>
+<h1 class="title">DATA 607 - Assignment 5B - Codebase</h1>
 </div>
 
 
@@ -275,13 +310,12 @@ window.Quarto = {
 </header>
 
 
-<section id="section" class="level1">
-<h1></h1>
-</section>
 <section id="introduction-and-overview" class="level1">
 <h1>Introduction and Overview</h1>
 <p>This assignment is an extension of Project 1, in which Elo ratings were calculated for 13 WNBA teams competing in the 2025 WNBA regular season. Here, the output of Project 1 (a .CSV file containing season-end Elo ratings, average opponent Elo ratings, and total wins) acts as the input for this assignment, where expected win totals will be calculated for each team. Expected wins will be calculated using a methodology similar to Arpad Elo’s original approach, but modified for the <a href="https://nicidob.github.io/nba_elo/">NBA regular season</a>. Probabilities are calculated via a sigmoid function:</p>
-<p><span class="math display">\[ \sigma(x) = \frac{1}{1+10^\frac{-x}{400}} \]</span></p>
+<p><span class="math display">\[
+\sigma(x) = \frac{1}{1+10^\frac{-x}{400}}
+\]</span></p>
 <p>From there, individual win probabilities are calculated according to:</p>
 <p><span class="math display">\[P{(A&gt;B)} = \sigma(R_A - R_B) \]</span></p>
 <p>The error, for a game in which team A is the winner, is calculated as the probability of B winning:</p>
@@ -294,6 +328,302 @@ window.Quarto = {
 <section id="adaptation" class="level1">
 <h1>Adaptation</h1>
 <p>In the original assignment, semi-structured data for a chess tournament was provided for analysis under the Elo methodology. Outputs from the first project consisted of a .CSV file with chess player information: name, state, total points, pre-rating, and average opponent pre-rating. Outputs for the first phase of this assignment involved a .CSV file with the following data: WNBA team, In this modified assignment, data for the 2025 WNBA regular season will be used to furnish expected win predictions for each WNBA team name, total wins in 2025, final Elo rating, and average opponent Elo rating.</p>
+</section>
+<section id="codebase" class="level1">
+<h1>Codebase</h1>
+<section id="data-import" class="level2">
+<h2 class="anchored" data-anchor-id="data-import">Data Import</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>season <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="dv">2025</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/kailot-harris/DATA-607-Project-1-WNBA-ELO-Ratings/refs/heads/main/wnba_elo_summary_2025.csv"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>csv_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> url, </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">show_col_types =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">progress =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>clean_data <span class="ot">&lt;-</span> janitor<span class="sc">::</span><span class="fu">clean_names</span>(csv_data)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>games_2025 <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="dv">44</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> clean_data <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">rel_elo =</span> final_elo<span class="sc">-</span>avg_opp_elo,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">win_prob =</span> <span class="dv">1</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>(<span class="dv">10</span><span class="sc">^</span>(<span class="sc">-</span>rel_elo<span class="sc">/</span><span class="dv">400</span>))),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">e_wins =</span> <span class="fu">round</span>(games_2025 <span class="sc">*</span> win_prob,<span class="dv">2</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">diff_wins =</span> <span class="fu">round</span>(total_wins <span class="sc">-</span> e_wins,<span class="dv">1</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>          ) <span class="sc">|&gt;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(diff_wins))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df, <span class="at">caption =</span> <span class="st">"Summary of Elo Results"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Summary of Elo Results</caption>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 12%">
+<col style="width: 10%">
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 10%">
+<col style="width: 7%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">team</th>
+<th style="text-align: right;">total_wins</th>
+<th style="text-align: right;">final_elo</th>
+<th style="text-align: right;">avg_opp_elo</th>
+<th style="text-align: right;">rel_elo</th>
+<th style="text-align: right;">win_prob</th>
+<th style="text-align: right;">e_wins</th>
+<th style="text-align: right;">diff_wins</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Washington Mystics</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">1106</td>
+<td style="text-align: right;">1301</td>
+<td style="text-align: right;">-195</td>
+<td style="text-align: right;">0.2455460</td>
+<td style="text-align: right;">10.80</td>
+<td style="text-align: right;">5.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Minnesota Lynx</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">1449</td>
+<td style="text-align: right;">1294</td>
+<td style="text-align: right;">155</td>
+<td style="text-align: right;">0.7093546</td>
+<td style="text-align: right;">31.21</td>
+<td style="text-align: right;">2.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Phoenix Mercury</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">1333</td>
+<td style="text-align: right;">1295</td>
+<td style="text-align: right;">38</td>
+<td style="text-align: right;">0.5544694</td>
+<td style="text-align: right;">24.40</td>
+<td style="text-align: right;">2.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">New York Liberty</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">1344</td>
+<td style="text-align: right;">1300</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: right;">0.5629847</td>
+<td style="text-align: right;">24.77</td>
+<td style="text-align: right;">2.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chicago Sky</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1085</td>
+<td style="text-align: right;">1324</td>
+<td style="text-align: right;">-239</td>
+<td style="text-align: right;">0.2016853</td>
+<td style="text-align: right;">8.87</td>
+<td style="text-align: right;">1.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Seattle Storm</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">1295</td>
+<td style="text-align: right;">1293</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.5028782</td>
+<td style="text-align: right;">22.13</td>
+<td style="text-align: right;">0.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Golden State Valkyries</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">1304</td>
+<td style="text-align: right;">1293</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.5158250</td>
+<td style="text-align: right;">22.70</td>
+<td style="text-align: right;">0.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dallas Wings</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1096</td>
+<td style="text-align: right;">1311</td>
+<td style="text-align: right;">-215</td>
+<td style="text-align: right;">0.2248471</td>
+<td style="text-align: right;">9.89</td>
+<td style="text-align: right;">0.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Indiana Fever</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">1343</td>
+<td style="text-align: right;">1284</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: right;">0.5841010</td>
+<td style="text-align: right;">25.70</td>
+<td style="text-align: right;">-1.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Los Angeles Sparks</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">1323</td>
+<td style="text-align: right;">1301</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">0.5316183</td>
+<td style="text-align: right;">23.39</td>
+<td style="text-align: right;">-2.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Connecticut Sun</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">1172</td>
+<td style="text-align: right;">1309</td>
+<td style="text-align: right;">-137</td>
+<td style="text-align: right;">0.3124618</td>
+<td style="text-align: right;">13.75</td>
+<td style="text-align: right;">-2.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Atlanta Dream</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">1491</td>
+<td style="text-align: right;">1298</td>
+<td style="text-align: right;">193</td>
+<td style="text-align: right;">0.7523150</td>
+<td style="text-align: right;">33.10</td>
+<td style="text-align: right;">-3.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Las Vegas Aces</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">1559</td>
+<td style="text-align: right;">1291</td>
+<td style="text-align: right;">268</td>
+<td style="text-align: right;">0.8238615</td>
+<td style="text-align: right;">36.25</td>
+<td style="text-align: right;">-6.2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>over_perform <span class="ot">&lt;-</span> <span class="fu">head</span>(df,<span class="dv">5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(team, total_wins, <span class="at">expected_wins =</span> e_wins, diff_wins)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(over_perform, <span class="at">caption =</span> <span class="st">"Top 5 Overperforming WNBA Teams (2025)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Top 5 Overperforming WNBA Teams (2025)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">team</th>
+<th style="text-align: right;">total_wins</th>
+<th style="text-align: right;">expected_wins</th>
+<th style="text-align: right;">diff_wins</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Washington Mystics</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">10.80</td>
+<td style="text-align: right;">5.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Minnesota Lynx</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">31.21</td>
+<td style="text-align: right;">2.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Phoenix Mercury</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">24.40</td>
+<td style="text-align: right;">2.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">New York Liberty</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">24.77</td>
+<td style="text-align: right;">2.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chicago Sky</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">8.87</td>
+<td style="text-align: right;">1.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>under_perform <span class="ot">&lt;-</span><span class="fu">tail</span>(df,<span class="dv">5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(team, total_wins, <span class="at">expected_wins =</span> e_wins, diff_wins) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(diff_wins)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(under_perform, <span class="at">caption =</span> <span class="st">"Top 5 Underperforming WNBA Teams (2025)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Top 5 Underperforming WNBA Teams (2025)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">team</th>
+<th style="text-align: right;">total_wins</th>
+<th style="text-align: right;">expected_wins</th>
+<th style="text-align: right;">diff_wins</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Las Vegas Aces</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">36.25</td>
+<td style="text-align: right;">-6.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Atlanta Dream</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">33.10</td>
+<td style="text-align: right;">-3.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Connecticut Sun</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">13.75</td>
+<td style="text-align: right;">-2.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Los Angeles Sparks</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">23.39</td>
+<td style="text-align: right;">-2.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Indiana Fever</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">25.70</td>
+<td style="text-align: right;">-1.7</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="data-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="data-visualization">Data Visualization</h2>
+</section>
 </section>
 
 </main>
