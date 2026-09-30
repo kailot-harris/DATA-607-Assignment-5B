@@ -114,7 +114,7 @@ knitr::kable(under_perform, caption = "Top 5 Underperforming WNBA Teams (2025)")
 ## Data Visualization
 
 ```{r setting-plot-theme}
-#| echo:  true
+#| echo:  false
 #| warning:  false
 #| message:  false
 
@@ -132,6 +132,8 @@ theme_standard <- function(){
     )
 }
 ```
+
+First, the relationship between end-of-season Elo rating and expected wins is visualized. A clear linear trend demonstrates that Elo rating are reliable predictors for expected wins.
 
 ```{r viz-1}
 #| echo:  true
@@ -154,11 +156,11 @@ df |>
 
 ```
 
-```{r}
+```{r viz-2}
 #| echo:  true
 #| warning:  false
 #| message:  false
-#| label: fig-1
+#| label: fig-2
 #| fig-cap: "Expected Wins vs. Total Wins (2025)"
 
 df |>
@@ -175,11 +177,11 @@ df |>
   scale_x_continuous(limits = c(0,44))
 ```
 
-```{r viz-2}
+```{r viz-3}
 #| echo:  true
 #| warning:  false
 #| message:  false
-#| label: fig-2
+#| label: fig-3
 #| fig-cap: "Summary of Win Differentials"
 
 df |>
