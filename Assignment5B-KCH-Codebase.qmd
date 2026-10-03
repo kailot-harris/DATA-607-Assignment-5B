@@ -13,7 +13,9 @@ theme:
 
 # Introduction and Overview
 
-This assignment is an extension of Project 1, in which Elo ratings were calculated for 13 WNBA teams competing in the 2025 WNBA regular season. Here, the output of Project 1 (a .CSV file containing season-end Elo ratings, average opponent Elo ratings, and total wins) acts as the input for this assignment, where expected win totals will be calculated for each team. Expected wins will be calculated using a methodology similar to Arpad Elo's original approach, but modified for the [NBA regular season](https://nicidob.github.io/nba_elo/). Probabilities are calculated via a sigmoid function:
+This assignment is an extension of Project 1, in which Elo ratings were calculated for 13 WNBA teams competing in the 2025 WNBA regular season. Here, the output of Project 1 (a .CSV file containing season-end Elo ratings, average opponent Elo ratings, and total wins) acts as the input for this assignment, where expected win totals will be calculated for each team. Expected wins will be calculated using a methodology similar to Arpad Elo's original approach, but modified for the NBA regular season.[^1] Probabilities are calculated via a sigmoid function:
+
+[^1]: Dobson, Nic. *FiveThirtyEight’s Elo Ratings and Logistic Regression*. https://nicidob.github.io/nba_elo/. Accessed 3 Oct. 2026.
 
 $$
 \sigma(x) = \frac{1}{1+10^\frac{-x}{400}}
@@ -43,6 +45,8 @@ In the original assignment, semi-structured data for a chess tournament was prov
 
 ## Data Import
 
+First, packages are loaded and the raw data is imported from a Github-hosted .CSV file.
+
 ```{r packages}
 #| echo: false
 #| warning:  false
@@ -67,6 +71,10 @@ csv_data <- readr::read_csv(file = url,
 
 ```
 
+## Data Tidying
+
+The column names are cleaned using the `janitor` package's `clean_names()` function. Then a new data frame is formed by adding new columns: relative Elo rating (comparing the current rating to the average opponent's), win probability (calculated using Elo's formula above), expected wins (the number of wins in a 44-game WNBA regular season), and the differential of wins (total - expected). A summary is provided.
+
 ```{r data-tidying-transforming}
 #| echo:  true
 #| warning:  false
@@ -87,10 +95,16 @@ df <- clean_data |>
 knitr::kable(df, caption = "Summary of Elo Results")
 ```
 
-```{r overperform}
+## Over- and Under-performers
+
+Next, two new data frames are formed from the sorted `df` frame: the over-performers are the top 5 teams in win differential and the under-performers are the bottom 5 teams.
+
+```{r}
 #| echo:  true
 #| warning:  false
 #| message:  false
+#| label: tbl-1
+#| tbl-cap: "Top 5 Overperfoming WNBA Teams (2025)"
 
 over_perform <- head(df,5) |>
   select(team, total_wins, expected_wins = e_wins, diff_wins)
@@ -99,10 +113,12 @@ over_perform <- head(df,5) |>
 knitr::kable(over_perform, caption = "Top 5 Overperforming WNBA Teams (2025)")
 ```
 
-```{r underperform}
+```{r}
 #| echo:  true
 #| warning:  false
 #| message:  false
+#| label: tbl-2
+#| tbl-cap: "Top 5 Underperfoming WNBA Teams (2025)"
 
 under_perform <-tail(df,5) |>
   select(team, total_wins, expected_wins = e_wins, diff_wins) |>
@@ -133,9 +149,9 @@ theme_standard <- function(){
 }
 ```
 
-First, the relationship between end-of-season Elo rating and expected wins is visualized. A clear linear trend demonstrates that Elo rating are reliable predictors for expected wins.
+First, the relationship between end-of-season Elo rating and expected wins is visualized. A clear linear trend reinforces that this methodology is accurate, as Elo ratings are used in the calculation for expected wins.
 
-```{r viz-1}
+```{r}
 #| echo:  true
 #| warning:  false
 #| message:  false
@@ -156,7 +172,9 @@ df |>
 
 ```
 
-```{r viz-2}
+Next, the relationship between total wins and expected wins is visualized, to inspect the parity between projection and true end-of-season metrics.
+
+```{r}
 #| echo:  true
 #| warning:  false
 #| message:  false
@@ -177,7 +195,9 @@ df |>
   scale_x_continuous(limits = c(0,44))
 ```
 
-```{r viz-3}
+Finally, the win differentials are shown for all 13 WNBA teams.
+
+```{r}
 #| echo:  true
 #| warning:  false
 #| message:  false
@@ -199,3 +219,15 @@ df |>
 ```
 
 # Findings and Recommendations
+
+As an extension to Project 1, here the Elo ratings for 13 WNBA teams in the 2025 regular season are used to predict expected wins via opponent-adjusted win probabilities.
+
+One key finding was the strong linearity of the prediction mechanism: in @fig-1 it is clear that Elo ratings are reliable predictors of overall team quality. The linearity of @fig-2 also demonstrates the validity of the Elo methodology in nearly replicating true season-end performance.
+
+By comparing the expected wins to total wins for each team, over-performing teams can be identified (@tbl-1), while under-performing teams are also identifiable (@tbl-2). Across the 44-game regular season, win differentials ranged from approximately -6 to +6 games, as seen in @fig-3. This indicates the boundary of how far team year-end standings deviated from expectations based on the Elo methodology.
+
+Possible expansions on this work could include modifying the Elo methodology to add a home-court-advantage (HCA). This can be accomplished by adding 100 to each home team's pre-game Elo rating, which will increase their probability of winning that matchup. Additionally, the margin-of-victory (MOV) can be determined from box-score data and used to scale the update factor, $K$, using this game-level data.
+
+One impact of this modified methodology would be to reward teams achieving blowout victories (\>25 points) compared to near wins (1-5 points). Another impact is that it would reward away team victories more than home game victories, since the pre-game Elo rating for the home team is inflated.
+
+Additionally, hyper-parameter tuning, specifically for the update factor, $K$, could be performed to calibrate the model against true end-of-season rankings.
